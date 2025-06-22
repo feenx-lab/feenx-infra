@@ -2,7 +2,7 @@
   description = "feenx-infra";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
@@ -19,6 +19,16 @@
             docker-compose
             neovim
             wakeonlan
+            talosctl
+            kubectl
+            helm
+            opentofu
+
+            # Alias scripts, workaround for https://github.com/direnv/direnv/issues/73
+            (pkgs.writeShellScriptBin "tf" "tofu $@")
+            (pkgs.writeShellScriptBin "tctl" "talosctl $@")
+            (pkgs.writeShellScriptBin "k" "kubectl $@")
+            (pkgs.writeShellScriptBin "h" "helm $@")
           ];
         };
       }
