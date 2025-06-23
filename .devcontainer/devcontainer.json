@@ -11,8 +11,9 @@
   "customizations": {
    "vscode": {
       "extensions": [
-         "ms-azuretools.vscode-docker",
-         "arrterian.nix-env-selector"
+        "ms-azuretools.vscode-docker",
+        "arrterian.nix-env-selector",
+        "gamunu.opentofu"
       ]
    }
   },
