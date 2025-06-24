@@ -9,7 +9,7 @@ locals {
     "--schematic-id", talos_image_factory_schematic.this.id,
     "--network", var.network_subnet
   ]
-  wol_args       = flatten([for n in var.talos_nodes : ["-m", n.wake_on_lan_mac]])
+  wol_args       = flatten([for n in var.cluster_nodes : ["-m", n.wake_on_lan_mac]])
   flint_pxe_args = concat(local.base_args, local.wol_args)
 }
 

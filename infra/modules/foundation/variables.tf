@@ -19,3 +19,11 @@ variable "cluster_info" {
     endpoint    = string
   })
 }
+
+variable "talos_version" {
+  type = string
+}
+
+variable "schematic_id" {
+  type = string
+}

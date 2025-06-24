@@ -34,7 +34,7 @@ variable "wait_time" {
   type        = number
 }
 
-variable "talos_nodes" {
+variable "cluster_nodes" {
   description = "Map of Talos nodes with hostname and mac_address properties"
   type = map(object({
     hostname        = string

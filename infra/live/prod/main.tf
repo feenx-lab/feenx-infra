@@ -1,12 +1,21 @@
 # Locals
 locals {
-  bootstrap_node = one([for n in var.talos_nodes : n.hostname if n.bootstrap])
+  bootstrap_node = one([for n in var.cluster_nodes : n.hostname if n.bootstrap])
 }
 
 # Modules
-module "flint_pxe" {
-  source         = "../../modules/flint_pxe"
+module "baremetal" {
+  source         = "../../modules/baremetal"
   network_subnet = "10.10.97.1/24"
   wait_time      = 180
-  talos_nodes    = var.talos_nodes
+  cluster_nodes    = var.cluster_nodes
+}
+
+module "foundation" {
+  depends_on = [module.baremetal]
+  source = "../../modules/foundation"
+  cluster_info = var.cluster_info
+  cluster_nodes = var.cluster_nodes
+  talos_version = module.baremetal.talos_version
+  schematic_id = module.baremetal.schematic_id
 }
