@@ -15,6 +15,7 @@ cluster_nodes = {
     wake_on_lan_mac = "58:47:CA:7F:D3:B4"
     install_disk    = "/dev/nvme0n1"
     role            = "controlplane"
+    depends_on      = ["nx0"]
   },
   nx2 = {
     hostname        = "nx2.feenx.io"
@@ -23,6 +24,7 @@ cluster_nodes = {
     wake_on_lan_mac = "58:47:CA:7F:D7:7C"
     install_disk    = "/dev/nvme0n1"
     role            = "controlplane"
+    depends_on      = ["nx1"]
   }
 }
 
@@ -30,5 +32,5 @@ cluster_info = {
   name        = "fnx-platform-prod-k8s"
   nameservers = ["10.10.97.254"]
   virtual_ip  = "10.10.97.20"
-  endpoint = "https://k8s.feenx.io:6443"
+  endpoint    = "https://k8s.feenx.io:6443"
 }

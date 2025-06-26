@@ -1,5 +1,5 @@
-variable "cluster_nodes" {
-  type = map(object({
+variable "node_info" {
+  type = object({
     hostname        = string
     ip              = string
     mac_address     = string
@@ -7,7 +7,7 @@ variable "cluster_nodes" {
     install_disk    = string
     role            = string
     bootstrap       = optional(bool, false)
-  }))
+  })
 }
 
 variable "cluster_info" {
@@ -22,6 +22,25 @@ variable "cluster_info" {
 
 variable "talos_version" {
   type = string
+}
+
+variable "k8s_version" {
+  type = string
+}
+
+variable "machine_secrets" {
+  type = any
+}
+
+variable "client_configuration" {
+  type = any
+}
+
+variable "inline_manifests" {
+  type = list(object({
+    name     = string
+    contents = string
+  }))
 }
 
 variable "schematic_id" {
