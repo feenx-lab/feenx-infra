@@ -10,16 +10,7 @@ variable "cluster_nodes" {
   }))
 }
 
-variable "cluster_info" {
-  description = "Cluster Information"
-  type = object({
-    name        = string
-    virtual_ip  = string
-    nameservers = list(string)
-    endpoint    = string
-  })
+variable "client_configuration" {
+  type = any
 }
 
-variable "k8s_version" {
-  type = string
-}

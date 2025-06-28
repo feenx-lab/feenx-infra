@@ -34,10 +34,7 @@ variable "wait_time" {
   type        = number
 }
 
-variable "talos_nodes" {
-  description = "Map of Talos nodes with hostname and mac_address properties"
-  type = map(object({
-    hostname        = string
-    wake_on_lan_mac = string
-  }))
+variable "wol_mac_addresses" {
+  description = "List of mac addresses to wake on lan for bootstrapping"
+  type        = list(string)
 }
