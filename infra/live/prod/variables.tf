@@ -19,3 +19,7 @@ variable "cluster_info" {
     endpoint    = string
   })
 }
+
+variable "k8s_version" {
+  type = string
+}

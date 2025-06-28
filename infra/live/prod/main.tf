@@ -43,7 +43,7 @@ module "nx0" {
   # Cluster Info
   cluster_info  = var.cluster_info
   talos_version = module.baremetal.talos_version
-  k8s_version   = "1.33.0" #TODO: Create variable in the root module.
+  k8s_version   = var.k8s_version
   schematic_id  = module.baremetal.schematic_id
 
   # Node Info
@@ -64,7 +64,7 @@ module "nx1" {
   # Cluster Info
   cluster_info  = var.cluster_info
   talos_version = module.baremetal.talos_version
-  k8s_version   = "1.33.0" #TODO: Create variable in the root module.
+  k8s_version   = var.k8s_version
   schematic_id  = module.baremetal.schematic_id
 
   # Node Info
@@ -85,7 +85,7 @@ module "nx2" {
   # Cluster Info
   cluster_info  = var.cluster_info
   talos_version = module.baremetal.talos_version
-  k8s_version   = "1.33.0" #TODO: Create variable in the root module.
+  k8s_version   = var.k8s_version
   schematic_id  = module.baremetal.schematic_id
 
   # Node Info

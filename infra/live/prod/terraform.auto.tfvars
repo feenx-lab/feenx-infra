@@ -34,3 +34,5 @@ cluster_info = {
   virtual_ip  = "10.10.97.20"
   endpoint    = "https://k8s.feenx.io:6443"
 }
+
+k8s_version = "1.33.0"

@@ -24,7 +24,8 @@ data "talos_image_factory_extensions_versions" "this" {
   talos_version = local.talos_version
   filters = {
     names = [
-      "amdgpu"
+      "amdgpu",
+      "iscsi-tools"
     ]
   }
 }

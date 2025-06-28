@@ -43,8 +43,10 @@ resource "talos_machine_configuration_apply" "this" {
     # Controls wether we can destroy the entire cluster or not,
     # if graceful, a full destroy of all nodes will fail on a node because its the last member of the cluster
     # otherwise, will destroy all nodes regardless of the cluster health, members, etc.
-    graceful = false
-    reset    = true
-    reboot   = true
+    graceful = true
+
+    # Let's not reset and reboot anymore, we have real stuff on the cluster now!
+    reset    = false
+    reboot   = false
   }
 }
