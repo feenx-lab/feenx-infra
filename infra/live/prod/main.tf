@@ -109,3 +109,9 @@ module "cluster" {
 
   cluster_nodes = var.cluster_nodes
 }
+
+# Bootstrap flux-operator
+module "flux_operator" {
+  depends_on = [module.cluster]
+  source = "../../modules/flux_operator"
+}
