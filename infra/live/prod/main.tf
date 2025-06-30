@@ -111,14 +111,14 @@ module "cluster" {
 module "github_deploy_key" {
   depends_on = [module.cluster]
   source = "../../modules/github_deploy_key"
-  full_repo_name = "feenx-lab/feenx-platform"
+  full_repo_name = "feenx-lab/platform"
 }
 
-module "flux_operator" {
+module "flux" {
   depends_on = [module.github_deploy_key]
-  source = "../../modules/flux_operator"
-  git_url = "ssh://git@github.com:feenx-lab/feenx-platform.git"
-  git_path = "apps"
+  source = "../../modules/flux"
+  git_url = "ssh://git@github.com:feenx-lab/platform.git"
+  git_path = "clusters/prod"
   git_private_key = module.github_deploy_key.tls_private_key
   providers = {
     kubernetes = kubernetes.configured
