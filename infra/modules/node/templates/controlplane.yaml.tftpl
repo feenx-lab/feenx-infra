@@ -1,0 +1,37 @@
+machine:
+  network:
+    hostname: ${hostname}
+    interfaces:
+      # Should be the first 10Gb interface
+      - deviceSelector:
+          hardwareAddr: "${mac_address}"
+        dhcp: true
+        vip:
+          ip: ${virtual_ip}
+      # Make sure ignore the 2.5Gb interface
+      - deviceSelector:
+          hardwareAddr: "${wake_on_lan_mac}"
+        ignore: true
+  install:
+      disk: ${install_disk}
+      image: factory.talos.dev/metal-installer/${schematic_id}:${talos_version}
+      wipe: true
+  kubelet:
+    extraArgs:
+      rotate-server-certificates: true
+
+cluster:
+  # We allow scheduling on control planes, this is a 3 node cluster.
+  allowSchedulingOnControlPlanes: true
+
+  # Disable default CNI and kube-proxy
+  network:
+    cni:
+      name: none
+  proxy:
+    disabled: true
+
+  # Extra manifests for auto certificate rotation for kubelet
+  extraManifests:
+    - https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/main/deploy/standalone-install.yaml
+    - https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml

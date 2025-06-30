@@ -4,12 +4,12 @@ locals {
   talos_version_latest = element(data.talos_image_factory_versions.this.talos_versions, length(data.talos_image_factory_versions.this.talos_versions) - 1)
   talos_version        = coalesce(var.talos_version, local.talos_version_latest)
   base_args = [
-    "--wait", var.wait_time,
+    # "--wait", var.wait_time,
     "--talos-version", local.talos_version,
     "--schematic-id", talos_image_factory_schematic.this.id,
     "--network", var.network_subnet
   ]
-  wol_args       = flatten([for n in var.talos_nodes : ["-m", n.wake_on_lan_mac]])
+  wol_args       = flatten([for mac in var.wol_mac_addresses : ["-m", mac]])
   flint_pxe_args = concat(local.base_args, local.wol_args)
 }
 
@@ -24,7 +24,8 @@ data "talos_image_factory_extensions_versions" "this" {
   talos_version = local.talos_version
   filters = {
     names = [
-      "amdgpu"
+      "amdgpu",
+      "iscsi-tools"
     ]
   }
 }
@@ -63,4 +64,12 @@ resource "docker_container" "flint_pxe_container" {
   }
 
   command = local.flint_pxe_args
+
+  lifecycle {
+    ignore_changes = [
+      capabilities,
+      labels,
+      healthcheck
+    ]
+  }
 }

@@ -10,21 +10,10 @@ variable "cluster_nodes" {
   }))
 }
 
-variable "cluster_info" {
-  description = "Cluster Information"
-  type = object({
-    name        = string
-    virtual_ip  = string
-    nameservers = list(string)
-    endpoint    = string
-  })
-}
-
-variable "k8s_version" {
-  type = string
+variable "client_configuration" {
+  type = any
 }
 
 variable "kube_config_path" {
   type = string
-  default = "~/.kube/config"
 }

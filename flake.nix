@@ -21,8 +21,11 @@
             wakeonlan
             talosctl
             kubectl
-            helm
+            kubernetes-helm
             opentofu
+            go
+            k9s
+            gh
 
             # Alias scripts, workaround for https://github.com/direnv/direnv/issues/73
             (pkgs.writeShellScriptBin "tf" "tofu $@")

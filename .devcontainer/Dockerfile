@@ -4,3 +4,5 @@ RUN echo "Welcome to your declarative, Nix-powered, dev environment setup." > ~/
 
 # cache /nix
 VOLUME /nix
+VOLUME ~/.kube
+VOLUME ~/.talos
