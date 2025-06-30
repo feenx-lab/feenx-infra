@@ -14,3 +14,6 @@ variable "client_configuration" {
   type = any
 }
 
+variable "kube_config_path" {
+  type = string
+}

@@ -23,3 +23,8 @@ variable "cluster_info" {
 variable "k8s_version" {
   type = string
 }
+
+variable "kube_config_path" {
+  type = string
+  default = "~/.kube/config"
+}

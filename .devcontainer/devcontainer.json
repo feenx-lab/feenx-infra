@@ -5,6 +5,11 @@
    "context": ".."
   },
 
+  "mounts": [
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.kube/,target=/home/code/.kube/,type=bind",
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.kube/,target=/home/code/.talos/,type=bind"
+  ],
+
   "userEnvProbe": "loginShell",
   "postCreateCommand": "cat ~/greeting.txt",
 

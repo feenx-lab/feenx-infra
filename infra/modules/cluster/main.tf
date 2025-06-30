@@ -26,8 +26,12 @@ resource "talos_cluster_kubeconfig" "this" {
   node                 = local.bootstrap_node_ip
 }
 
-resource "local_file" "kubeconfig" {
+resource "local_sensitive_file" "kubeconfig" {
   depends_on = [talos_cluster_kubeconfig.this]
   content    = talos_cluster_kubeconfig.this.kubeconfig_raw
-  filename   = pathexpand("~/.kube/config")
+  filename   = pathexpand(var.kube_config_path)
+
+  lifecycle {
+    replace_triggered_by = [talos_cluster_kubeconfig.this]
+  }
 }

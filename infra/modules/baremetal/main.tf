@@ -4,7 +4,7 @@ locals {
   talos_version_latest = element(data.talos_image_factory_versions.this.talos_versions, length(data.talos_image_factory_versions.this.talos_versions) - 1)
   talos_version        = coalesce(var.talos_version, local.talos_version_latest)
   base_args = [
-    "--wait", var.wait_time,
+    # "--wait", var.wait_time,
     "--talos-version", local.talos_version,
     "--schematic-id", talos_image_factory_schematic.this.id,
     "--network", var.network_subnet
@@ -64,4 +64,12 @@ resource "docker_container" "flint_pxe_container" {
   }
 
   command = local.flint_pxe_args
+
+  lifecycle {
+    ignore_changes = [
+      capabilities,
+      labels,
+      healthcheck
+    ]
+  }
 }
