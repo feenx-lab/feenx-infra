@@ -36,3 +36,6 @@ cluster_info = {
 }
 
 k8s_version = "1.33.0"
+
+github_organization = "feenx-lab"
+github_repository = "platform"
