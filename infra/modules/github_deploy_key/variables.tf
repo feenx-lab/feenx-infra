@@ -1,3 +1,3 @@
-variable "full_repo_name" {
+variable "repo_name" {
   type = string
 }

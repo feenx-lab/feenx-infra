@@ -28,3 +28,11 @@ variable "kube_config_path" {
   type = string
   default = "~/.kube/config"
 }
+
+variable "github_organization" {
+  type = string
+}
+
+variable "github_repository" {
+  type = string
+}

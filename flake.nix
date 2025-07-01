@@ -26,6 +26,8 @@
             go
             k9s
             gh
+            fluxcd
+            cilium-cli
 
             # Alias scripts, workaround for https://github.com/direnv/direnv/issues/73
             (pkgs.writeShellScriptBin "tf" "tofu $@")

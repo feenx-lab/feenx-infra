@@ -18,7 +18,9 @@ resource "kubernetes_secret" "git_ssh_auth" {
   }
 
   data = {
-    identity = base64encode(var.git_private_key)
+    "identity.pub" = var.git_public_key
+    "identity" = var.git_private_key
+    "known_hosts"  = "github.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg="
   }
 
   type = "Opaque"

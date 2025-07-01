@@ -105,21 +105,25 @@ module "cluster" {
   client_configuration = module.config.client_configuration
   kube_config_path = var.kube_config_path
 
+  # Cluster Info
   cluster_nodes = var.cluster_nodes
+  cluster_name = var.cluster_info.name
 }
 
 module "github_deploy_key" {
   depends_on = [module.cluster]
   source = "../../modules/github_deploy_key"
-  full_repo_name = "feenx-lab/platform"
+  repo_name = "${var.github_repository}"
 }
 
 module "flux" {
   depends_on = [module.github_deploy_key]
   source = "../../modules/flux"
-  git_url = "ssh://git@github.com:feenx-lab/platform.git"
+  git_url = "ssh://git@github.com/${var.github_organization}/${var.github_repository}"
   git_path = "clusters/prod"
+  git_ref = "refs/heads/feat/initial-config"
   git_private_key = module.github_deploy_key.tls_private_key
+  git_public_key = module.github_deploy_key.tls_public_key
   providers = {
     kubernetes = kubernetes.configured
     helm = helm.configured

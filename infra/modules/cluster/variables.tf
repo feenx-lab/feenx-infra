@@ -17,3 +17,7 @@ variable "client_configuration" {
 variable "kube_config_path" {
   type = string
 }
+
+variable "cluster_name" {
+  type = string
+}
